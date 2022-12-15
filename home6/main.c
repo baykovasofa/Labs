@@ -15,6 +15,7 @@ int main(void)
 
 	// Часть 1
 	b = (c + a) / 2.0;
+	x0 = a;
 
 	while(fabs(e1) > err1)
 	{
