@@ -40,7 +40,7 @@ int main(void)
 	// Часть 2
 	summ = x0;
 
-	while(fabs(e2) > err2)
+	while(e2 > err2)
 	{
 		s = summ + stepen(x0, 2*n+1) / faktorial(2*n+1);
 
