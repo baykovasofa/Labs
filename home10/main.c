@@ -2,17 +2,16 @@
 #include <limits.h>
 
 void testfunc(int k);
-int func(int k, int *y);
+int func(int k, int *err);
 
-int result, error;
 
 int main(void)
 {
-    int k;
+    int k, result, error = 0;
 	scanf("%d", &k);
     testfunc(k);
     
-    error = func(k, &result);
+    result = func(k, &error);
 
     if (error == 0)
         printf("%d\n", result);
@@ -32,15 +31,24 @@ void testfunc(int k)
         a = b + 2 * c;
         if (c < 0)
             break;
-        printf("%3d\t%d\n", n, c); 
+        printf("testfunc: %3d\t%d\n", n, c); 
     }    
 }
 
-int func(int k, int *y)
+int func(int k, int *err)
 {
-    int err = 0;
+    int f1, f2;
+    if (k <= 2)
+        return 1;
 
+    f1 = func(k - 1, err);
+    f2 = func(k - 2, err);
 
-
-    return err;    
+    if (INT_MAX - f1 < 2 * f2)
+    {
+        *err = 1;
+        return 1;
+    } 
+    else
+        return f1 + 2 * f2;
 }
